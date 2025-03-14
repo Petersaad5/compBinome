@@ -2,7 +2,12 @@ grammar ifcc;
 
 axiom : prog EOF ;
 
-prog : 'int' 'main' '(' ')' '{' return_stmt '}' ;
+prog : 'int' 'main' '(' ')' declaration* affectation* '{' return_stmt '}' ;
+
+declaration : 'int' ID ('=' CONST)? ';' ;
+affectation : ID '=' CONST ';' ;
+
+ID : [a-zA-Z_][a-zA-Z_0-9]* ;
 
 return_stmt: RETURN CONST ';' ;
 
